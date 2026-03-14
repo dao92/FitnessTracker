@@ -6,8 +6,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import pl.wsb.fitnesstracker.healthmetrics.api.HealthMetrics;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -45,5 +48,10 @@ public class User {
         this.email = email;
     }
 
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<HealthMetrics> healthMetricsList = new ArrayList<>();
 }
 
